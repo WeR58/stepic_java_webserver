@@ -1,6 +1,7 @@
 package accounts;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +23,13 @@ public class AccountService {
     public void addNewUser(UserProfile userProfile) {
         loginToProfile.put(userProfile.getLogin(), userProfile);
     }
+
+    public void addUsers(List<UserProfile> userProfiles) {
+        for (UserProfile userProfile : userProfiles) {
+            loginToProfile.put(userProfile.getLogin(), userProfile);
+        }
+    }
+
 
     public UserProfile getUserByLogin(String login) {
         return loginToProfile.get(login);

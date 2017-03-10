@@ -1,10 +1,12 @@
 package dbService.dao;
 
-import dbService.dataSets.UsersDataSet;
+import accounts.UserProfile;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+
+import java.util.List;
 
 /**
  * @author v.chibrikov
@@ -21,16 +23,21 @@ public class UsersDAO {
         this.session = session;
     }
 
-    public UsersDataSet get(long id) throws HibernateException {
-        return (UsersDataSet) session.get(UsersDataSet.class, id);
+    public UserProfile get(String login) throws HibernateException {
+        return (UserProfile) session.get(UserProfile.class, login);
     }
 
-    public long getUserId(String name) throws HibernateException {
-        Criteria criteria = session.createCriteria(UsersDataSet.class);
-        return ((UsersDataSet) criteria.add(Restrictions.eq("name", name)).uniqueResult()).getId();
+    public String getUserLogin(String email) throws HibernateException {
+        Criteria criteria = session.createCriteria(UserProfile.class);
+        return ((UserProfile) criteria.add(Restrictions.eq("email", email)).uniqueResult()).getLogin();
     }
 
-    public long insertUser(String name) throws HibernateException {
-        return (Long) session.save(new UsersDataSet(name));
+    public long insertUser(UserProfile userProfile) throws HibernateException {
+        return (Long) session.save(userProfile);
+    }
+
+    public List<UserProfile> getUserProfiles() {
+        Criteria criteria = session.createCriteria(UserProfile.class);
+        return (List<UserProfile>) criteria.list();
     }
 }

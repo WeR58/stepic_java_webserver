@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 /**
  * @author v.chibrikov
  *         <p>
@@ -114,5 +115,13 @@ public class DBService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void connectionClose() {
+        try {
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

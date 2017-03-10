@@ -5,6 +5,8 @@ import dbService.DBException;
 import dbService.DBService;
 import dbService.dataSets.UsersDataSet;
 
+import java.sql.SQLException;
+
 /**
  * @author v.chibrikov
  *         <p>
@@ -26,6 +28,8 @@ public class Main {
             dbService.cleanUp();
         } catch (DBException e) {
             e.printStackTrace();
+        } finally {
+            dbService.connectionClose();
         }
     }
 }
