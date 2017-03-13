@@ -8,15 +8,23 @@
         function init() {
             ws = new WebSocket("ws://localhost:8080/chat");
             ws.onopen = function (event) {
-
+                alert("Соединение установлено.");
             };
             ws.onmessage = function (event) {
                 var $textarea = document.getElementById("messages");
                 $textarea.value = $textarea.value + event.data + "\n";
             };
             ws.onclose = function (event) {
-
+                if (event.wasClean) {
+                    alert('Соединение закрыто чисто');
+                } else {
+                    alert('Обрыв соединения'); // например, "убит" процесс сервера
+                }
+                alert('Код: ' + event.code + ' причина: ' + event.reason);
             }
+            ws.onerror = function(error) {
+                alert("Ошибка " + error.message);
+            };
         }
         function sendMessage() {
             var messageField = document.getElementById("message");

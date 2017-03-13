@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 @WebServlet(name = "WebSocketChatServlet", urlPatterns = {"/chat"})
 public class WebSocketChatServlet extends WebSocketServlet {
-    private final static long LOGOUT_TIME = TimeUnit.MINUTES.toSeconds(10);
+    private final static long LOGOUT_TIME = TimeUnit.MINUTES.toMillis(10);
     private final ChatService chatService;
 
     public WebSocketChatServlet() {
