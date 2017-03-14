@@ -8,9 +8,8 @@ package accountServer;
  *         <p>
  *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
-public class AccountServer implements AccountServerI {
-    private int usersCount;
-    private int usersLimit;
+public class AccountServer implements IAccountServer {
+    private int usersCount, usersLimit;
 
     public AccountServer(int usersLimit) {
         this.usersCount = 0;

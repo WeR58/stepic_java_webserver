@@ -1,8 +1,9 @@
 package servlets;
 
-import accountServer.AccountServerI;
+import accountServer.IAccountServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.jetty.http.MimeTypes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,41 +21,20 @@ import java.io.IOException;
  */
 public class HomePageServlet extends HttpServlet {
     static final Logger logger = LogManager.getLogger(HomePageServlet.class.getName());
-    public static final String PAGE_URL = "/home";
-    private final AccountServerI accountServer;
+    public static final String PAGE_URL = "/admin";
+    private final IAccountServer accountServer;
 
-    public HomePageServlet(AccountServerI accountServer) {
+    public HomePageServlet(IAccountServer accountServer) {
         this.accountServer = accountServer;
     }
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
 
-        response.setContentType("text/html;charset=utf-8");
-
-        String remove = request.getParameter("remove");
-
-        if (remove != null) {
-            accountServer.removeUser();
-            response.getWriter().println("Hasta la vista!");
-            response.setStatus(HttpServletResponse.SC_OK);
-            return;
-        }
+        response.setContentType(MimeTypes.Type.TEXT_HTML_UTF_8.asString());
 
         int limit = accountServer.getUsersLimit();
-        int count = accountServer.getUsersCount();
-
-        logger.info("Limit: {}. Count {}", limit, count);
-
-        if (limit > count) {
-            logger.info("User pass");
-            accountServer.addNewUser();
-            response.getWriter().println("Hello, world!");
-            response.setStatus(HttpServletResponse.SC_OK);
-        } else {
-            logger.info("User were rejected");
-            response.getWriter().println("Server is closed for maintenance!");
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        }
+        response.getWriter().println(limit);
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 }

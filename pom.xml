@@ -9,6 +9,11 @@
     <version>1.0</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <org.eclipse.jetty.version>9.3.0.M0</org.eclipse.jetty.version>
+    </properties>
+
+
     <build>
         <plugins>
             <plugin>

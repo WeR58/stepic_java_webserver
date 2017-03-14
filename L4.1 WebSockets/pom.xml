@@ -13,11 +13,7 @@
         <version>1.0</version>
     </parent>
     <version>1.0</version>
-
-    <properties>
-        <org.eclipse.jetty.version>9.3.0.M0</org.eclipse.jetty.version>
-    </properties>
-
+    
     <dependencies>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>

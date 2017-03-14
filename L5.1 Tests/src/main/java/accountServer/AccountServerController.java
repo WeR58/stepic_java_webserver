@@ -9,9 +9,9 @@ package accountServer;
  *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
 public class AccountServerController implements AccountServerControllerMBean {
-    private final AccountServerI accountServer;
+    private final IAccountServer accountServer;
 
-    public AccountServerController(AccountServerI accountServer) {
+    public AccountServerController(IAccountServer accountServer) {
         this.accountServer = accountServer;
     }
 

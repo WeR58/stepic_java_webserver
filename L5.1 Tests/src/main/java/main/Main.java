@@ -1,9 +1,9 @@
-package example;
+package main;
 
 import accountServer.AccountServer;
 import accountServer.AccountServerController;
 import accountServer.AccountServerControllerMBean;
-import accountServer.AccountServerI;
+import accountServer.IAccountServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Handler;
@@ -17,6 +17,7 @@ import servlets.HomePageServlet;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
+import java.util.Arrays;
 
 /**
  * @author a.akbashev
@@ -27,24 +28,24 @@ import java.lang.management.ManagementFactory;
  *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
 public class Main {
-    static final Logger logger = LogManager.getLogger(Main.class.getName());
+    static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 1) {
-            logger.error("Use port as the first argument");
+        if (Arrays.asList(args).contains("false")) {
+            LOGGER.warn("Use port as the first argument");
             System.exit(1);
         }
 
-        String portString = args[0];
-        int port = Integer.valueOf(portString);
+        String portString = args.length > 0 ? args[0] : null;
+        int port = portString == null || portString.isEmpty() ? 8080 : Integer.valueOf(portString);
 
-        logger.info("Starting at http://127.0.0.1:" + portString);
+        LOGGER.info("Starting at http://127.0.0.1:" + port);
 
-        AccountServerI accountServer = new AccountServer(1);
+        IAccountServer accountServer = new AccountServer(10);
 
         AccountServerControllerMBean serverStatistics = new AccountServerController(accountServer);
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
-        ObjectName name = new ObjectName("ServerManager:type=AccountServerController");
+        ObjectName name = new ObjectName("Admin:type=AccountServerController");
         mbs.registerMBean(serverStatistics, name);
 
         Server server = new Server(port);
@@ -53,14 +54,14 @@ public class Main {
 
         ResourceHandler resource_handler = new ResourceHandler();
         resource_handler.setDirectoriesListed(true);
-        resource_handler.setResourceBase("static");
+        resource_handler.setResourceBase("L5.1 Tests/static");
 
         HandlerList handlers = new HandlerList();
         handlers.setHandlers(new Handler[]{resource_handler, context});
         server.setHandler(handlers);
 
         server.start();
-        logger.info("Server started");
+        LOGGER.info("Server started");
 
         server.join();
     }

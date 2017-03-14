@@ -7,7 +7,7 @@ package accountServer;
  *         <p/>
  *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
-public interface AccountServerI {
+public interface IAccountServer {
     void addNewUser();
 
     void removeUser();
