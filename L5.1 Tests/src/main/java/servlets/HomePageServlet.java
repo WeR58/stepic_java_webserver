@@ -1,6 +1,6 @@
 package servlets;
 
-import accountServer.IAccountServer;
+import resourceServer.IAccountServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.http.MimeTypes;

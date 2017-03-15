@@ -1,7 +1,7 @@
 package servlets;
 
-import accountServer.AccountServer;
-import accountServer.IAccountServer;
+import resourceServer.AccountServer;
+import resourceServer.IAccountServer;
 import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;

@@ -1,9 +1,9 @@
 package main;
 
-import accountServer.AccountServer;
-import accountServer.AccountServerController;
-import accountServer.AccountServerControllerMBean;
-import accountServer.IAccountServer;
+import resourceServer.AccountServer;
+import resourceServer.AccountServerController;
+import resourceServer.AccountServerControllerMBean;
+import resourceServer.IAccountServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.server.Handler;

@@ -4,7 +4,6 @@ import accounts.AccountService;
 import accounts.UserProfile;
 import dbService.DBException;
 import dbService.DBService;
-import dbService.dataSets.UsersDataSet;
 import org.eclipse.jetty.http.MimeTypes;
 
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package accountServer;
+package resourceServer;
 
 /**
  * @author v.chibrikov

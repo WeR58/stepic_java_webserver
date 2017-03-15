@@ -12,15 +12,15 @@ public class ObjectWriter {
     }
 
     private static void stringExample() {
-        write("Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn", "./string.bin");
-        String fromFile = (String) read("./string.bin");
+        write("Hi, this is a test string", "./L6.2 IO/string.bin");
+        String fromFile = (String) read("./L6.2 IO/string.bin");
         System.out.println(fromFile);
     }
 
     private static void descriptorExample() {
         Descriptor descriptor = new Descriptor("Anna", 15);
-        write(descriptor, "./descriptor.bin");
-        Descriptor fromFile = (Descriptor) read("./descriptor.bin");
+        write(descriptor, "./L6.2 IO/descriptor.bin");
+        Descriptor fromFile = (Descriptor) read("./L6.2 IO/descriptor.bin");
         System.out.println(fromFile);
     }
 
