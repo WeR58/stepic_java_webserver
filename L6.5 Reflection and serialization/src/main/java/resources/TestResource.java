@@ -1,14 +1,9 @@
 package resources;
 
 /**
- * @author a.akbashev
  * @author v.chibrikov
- *         <p>
- *         Пример кода для курса на https://stepic.org/
- *         <p>
- *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
  */
-public class TestResource implements ITestResource {
+public class TestResource {
     private String name;
     private int age;
 
@@ -22,13 +17,19 @@ public class TestResource implements ITestResource {
         this.age = 0;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public int getAge() {
         return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
