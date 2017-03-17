@@ -26,8 +26,7 @@ public class ResourcePageServlet extends HttpServlet {
         response.setContentType(MimeTypes.Type.TEXT_HTML_UTF_8.asString());
 
         String prefixPath = "./L6.5 Reflection and serialization/src/resources/";
-        String fullPath = prefixPath + path;
-        String forTest = prefixPath + "resource.xml";
+        String fullPathForTesting = prefixPath + path;
         resourceServer.readResource(path);
         response.getWriter().println("Resource loaded from path: " + path);
         response.setStatus(HttpServletResponse.SC_OK);

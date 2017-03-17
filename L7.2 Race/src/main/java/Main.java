@@ -47,8 +47,11 @@ public class Main {
 
         @Override
         public Integer call() throws Exception {
-            while (realCountNumber.incrementAndGet() < HUNDRED_MILLION) {
-                counter.increment();
+            synchronized (counter) {
+                while (realCountNumber.incrementAndGet() <= HUNDRED_MILLION) {
+                    counter.increment();
+                }
+                realCountNumber.decrementAndGet();
             }
             return counter.getCount();
         }
